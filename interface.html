@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        label, select, textarea, input { display: block; margin: 10px 0; width: 100%; }
+        .section { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .call-entries { margin-top: 10px; }
+        .output { white-space: pre-wrap; background: #f4f4f4; padding: 10px; border: 1px solid #ddd; }
+        .copy-button { margin-top: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .highlight { background-color: #DFF2D8; }
+        .error { color: red; font-weight: bold; }
+        .header { text-align: center; font-size: 24px; color: blue; font-weight: bold; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header">Made By Agent Abdlrahman_MaMohamed</div>
+    <h2>Customer Service Form Generator</h2>
+    <div class="section">
+        <label>Confirm Issue:</label>
+        <textarea id="issue" onfocus="highlightField(this)"></textarea>
+    </div>
+    <div class="section">
+        <h3>Call Section</h3>
+        <select id="callExist" onchange="toggleCallSection(); highlightField(this)">
+            <option value="no">No Call</option>
+            <option value="yes">Yes</option>
+        </select>
+        <div id="callSection" style="display:none;">
+            <select id="callPerson" onfocus="highlightField(this)">
+                <option>Merchant</option>
+                <option>Rider</option>
+                <option>First Rider</option>
+                <option>Last Rider</option>
+            </select>
+            <select id="callAnswer" onfocus="highlightField(this)">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+            <select id="callTimes" onfocus="highlightField(this)">
+                <option>1</option>
+                <option>2</option>
+            </select>
+            <textarea id="callResult" placeholder="Call results" onfocus="highlightField(this)"></textarea>
+        </div>
+    </div>
+    <div class="section">
+        <h3>CX Tag</h3>
+        <select id="cxTag1" onfocus="highlightField(this)">
+            <option>0RC</option>
+            <option>1RC</option>
+            <option>2RC</option>
+            <option>3RC</option>
+            <option>>3RC</option>
+        </select>
+        <select id="hasColor" onchange="toggleColorSelection(); highlightField(this)">
+            <option value="no">No Red/Purple</option>
+            <option value="yes">Yes</option>
+        </select>
+        <select id="cxTag2" style="display:none;" onfocus="highlightField(this)">
+            <option>Red</option>
+            <option>Purple</option>
+        </select>
+    </div>
+    <div class="section">
+        <label>Is there a high risk related?</label>
+        <select id="highRiskExist" onchange="toggleHighRisk(); highlightField(this)">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+        <div id="highRiskSection" style="display:none;">
+            <label>High Risk Related:</label>
+            <textarea id="highRisk" onfocus="highlightField(this)"></textarea>
+        </div>
+    </div>
+    <div class="section">
+        <h3>Result</h3>
+        <select id="resultAction" onfocus="highlightField(this)">
+            <option>Appease Customer</option>
+            <option>Refuse Customer’s Request</option>
+            <option>No Response</option>
+        </select>
+        <label>Refund:</label>
+        <select id="refund" onchange="toggleRefundAmount(); highlightField(this)">
+            <option>No</option>
+            <option>Yes</option>
+        </select>
+        <input id="refundAmount" type="number" placeholder="Enter Refund Amount" style="display:none;" onfocus="highlightField(this)">
+        <div id="refundError" class="error" style="display:none;">The amount of refund is more than 200 SAR, please check with the team leader first.</div>
+        <label>Compensation:</label>
+        <select id="compensation" onchange="toggleCompensationAmount(); highlightField(this)">
+            <option>No</option>
+            <option>Yes</option>
+        </select>
+        <input id="compensationAmount" type="number" placeholder="Enter Compensation Amount" style="display:none;" onfocus="highlightField(this)">
+    </div>
+    <button onclick="generateForm()">Generate Form</button>
+    <button class="copy-button" onclick="copyForm()">Copy Form</button>
+    <h3>Generated Output:</h3>
+    <div id="output" class="output"></div>
+    <script src="script.js"></script>
+</body>
+</html>
